@@ -44,6 +44,8 @@ class AIProvider:
         try:
             if self.name == "openai":
                 result = request_openai(provider=self, prompt=prompt, content=content)
+            elif self.name == "siliconflow":
+                result = request_siliconflow(provider=self, prompt=prompt, content=content)
             else:
                 result = request_gemini(provider=self, prompt=prompt, content=content)
             logger.info(f"{self.name} response: {result}")
@@ -90,6 +92,25 @@ def request_gemini(provider: AIProvider, prompt, content):
 def request_openai(provider: AIProvider, prompt, content):
     """
     https://platform.openai.com/docs/guides/text-generation
+    """
+    client = OpenAI(api_key=provider.api_key,
+                    base_url=provider.base_url)
+
+    chat_completion = client.chat.completions.create(messages=[
+        {
+            "role": "system",
+            "content": prompt
+        },
+        {
+            "role": "user",
+            "content": content
+        }
+    ], model=provider.model)
+    return chat_completion.choices[0].message.content
+
+def request_siliconflow(provider: AIProvider, prompt, content):
+    """
+    https://docs.siliconflow.cn/cn/api-reference/chat-completions/chat-completions
     """
     client = OpenAI(api_key=provider.api_key,
                     base_url=provider.base_url)
