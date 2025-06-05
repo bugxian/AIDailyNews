@@ -20,11 +20,11 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      GIT_NAME: ${{ secrets.GIT_NAME }}
-      GIT_EMAIL: ${{ secrets.GIT_EMAIL }}
+      GIT_NAME: bugxian
+      GIT_EMAIL: 52727330+bugxian@users.noreply.github.com
       AI_PROVIDER: siliconflow
       GPT_MODEL_NAME: Qwen/Qwen3-8B
-      GPT_BASE_URL: https://oa.api2d.net
+      GPT_BASE_URL: https://api.siliconflow.cn/v1
       GPT_API_KEY: sk-bpznpwmmpderwxxpxysnpbeiqffpexrconvuuxvsnghmdlja
 
     steps:
