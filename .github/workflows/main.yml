@@ -66,5 +66,5 @@ jobs:
         uses: ad-m/github-push-action@master
         if: ${{ env.BRANCH_NAME == 'main' }} # only for main
         with:
-          github_token: ${{ secrets.ACCESS_TOKEN }}
+          github_token: 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
           branch: main
